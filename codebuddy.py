@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, TextIteratorStreamer
 from auto_gptq import AutoGPTQForCausalLM
  
 BASE_MODEL = "TheBloke/Phind-CodeLlama-34B-v2-GPTQ"
- 
+
 MODEL_MAX_LEN = 16384
 SYSTEM_PROMPT = "You are an intelligent coding assistant."
 GEN_LENGTH = 2048
@@ -16,7 +16,7 @@ st.set_page_config(
    page_title="CodeBuddy",
    page_icon="🤗"
 )
- 
+
 
 @st.cache_resource()
 def load_models():
@@ -31,8 +31,8 @@ def load_models():
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
  
     return model, tokenizer
- 
-    
+
+
 def generate_response(instruction, max_new_tokens=GEN_LENGTH):
     """Function for Streaming a Model Response"""
     prompt = create_prompt(instruction, max_new_tokens)
