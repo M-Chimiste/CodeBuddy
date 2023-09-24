@@ -1,0 +1,6 @@
+transformers==4.33.2
+accelerate
+sentencepiece
+deepspeed
+peft
+streamlit
