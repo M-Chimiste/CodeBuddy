@@ -3,7 +3,7 @@ import re
 from threading import Thread
  
 import streamlit as st
-from transformers import AutoTokenizer, TextIteratorStreamer
+from transformers import AutoTokenizer, TextIteratorStreamer, AutoModelForCausalLM
 from auto_gptq import AutoGPTQForCausalLM
  
 BASE_MODEL = "TheBloke/Phind-CodeLlama-34B-v2-GPTQ"
@@ -21,12 +21,10 @@ st.set_page_config(
 @st.cache_resource()
 def load_models():
     """Function to load LLM and tokenizer"""
-    model = AutoGPTQForCausalLM.from_quantized(BASE_MODEL,
-        use_safetensors=True,
-        trust_remote_code=False,
-        inject_fused_attention=False,
-        device="auto",
-        quantize_config=None)
+    model = AutoModelForCausalLM.from_pretrained(BASE_MODEL,
+                                             device_map="auto",
+                                             trust_remote_code=False,
+                                             revision="gptq-4bit-32g-actorder_True")
     
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
  
