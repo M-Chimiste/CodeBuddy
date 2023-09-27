@@ -4,7 +4,6 @@ from threading import Thread
  
 import streamlit as st
 from transformers import AutoTokenizer, TextIteratorStreamer, AutoModelForCausalLM
-from auto_gptq import AutoGPTQForCausalLM
  
 BASE_MODEL = "TheBloke/Phind-CodeLlama-34B-v2-GPTQ"
 
